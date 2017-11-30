@@ -5,6 +5,9 @@ class User < ActiveRecord::Base
   validates :email, presence: true, length: { maximum: 255 },
                     format: { with: VALID_EMAIL_REGEX },
                     uniqueness: { case_sensitive: false }
+  VALID_PROFILE_REGEX = /\A[ぁ-んァ-ン一-龥、。]+\z/
+  validates :profile, length: { maximum: 100 }, on: :update
+  validates :locate, length: { maximum: 50 }, on: :update
   has_secure_password
   has_many :microposts
   has_many :following_relationships, class_name:  "Relationship",

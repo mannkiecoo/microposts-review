@@ -3,8 +3,13 @@
     <section class="user_info">
       <h1>
         <%= gravatar_for @user %>
-        <%= @user.name %>
       </h1>
+      <ul class="info-detail">
+        <li><%= @user.name %></li>
+        <li><% if @user.locate %><%= @user.locate %><% else %>地域未入力<% end %></li>
+        <li><% if @user.profile %><%= @user.profile %><% else %>プロフィール未入力<% end %></li>
+      </ul>
+      <div><%= link_to "編集", edit_user_path(current_user), class:"btn btn-primary profile-edit" if current_user %></div>
     </section>
   </aside>
   <div class="col-md-8">

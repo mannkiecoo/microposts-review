@@ -1,0 +1,22 @@
+<% @user = User.new unless @user %>
+
+<h1>Edit Profile</h1>
+
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <%= form_for(@user) do |f| %>
+      <%= render 'shared/error_messages', object: f.object %>
+
+      <%= f.label :name %>
+      <%= f.text_field :name, default: @user.name, class: 'form-control' %>
+      
+      <%= f.label :locate %>
+      <%= f.text_field :locate, :placeholder => '地域を入力してください', class: 'form-control' %>
+
+      <%= f.label :profile %>
+      <%= f.text_area :profile, :placeholder => 'プロフィールを入力してください', class: 'form-control' %>
+
+      <%= f.submit "変更を保存", class: "btn btn-primary" %>
+    <% end %>
+  </div>
+</div>

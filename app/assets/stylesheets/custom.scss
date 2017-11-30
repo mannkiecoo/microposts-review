@@ -50,6 +50,21 @@ p {
   line-height: 1.7em;
 }
 
+.user_info {
+  width: 80%;
+}
+
+.info-detail {
+  list-style-type: none;
+  li:first-child {
+    font-size: 1.5em;
+  }
+}
+
+.profile-edit {
+  float: right;
+}
+
 /* header */
 
 #logo {
