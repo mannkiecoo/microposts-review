@@ -22,12 +22,6 @@
       <%= label_tag 'user[cur_password]', "現在のパスワード" %>
       <%= password_field_tag 'user[cur_password]', '', class: 'form-control' %>
 
-      <%= f.label :password, "パスワード" %>
-      <%= f.password_field :password, class: 'form-control' %>
-
-      <%= f.label :password_confirmation, "パスワードの確認" %>
-      <%= f.password_field :password_confirmation, class: 'form-control' %>
-
       <%= f.submit "変更を保存", class: "btn btn-primary" %>
     <% end %>
   </div>
