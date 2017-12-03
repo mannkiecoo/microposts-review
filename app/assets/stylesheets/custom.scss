@@ -121,6 +121,10 @@ input {
   }
 }
 
+.profile-field {
+  height: 100px;
+}
+
 aside {
   section.user_info {
     margin-top: 20px;
@@ -144,6 +148,10 @@ aside {
       margin-bottom: 3px;
       margin-top: 0px;
     }
+  }
+  textarea {
+    height: 100px;
+    margin-bottom: 5px;
   }
 }
 
@@ -180,12 +188,5 @@ aside {
     float: left;
     margin-right: 10px;
     margin-top: 5px;
-  }
-}
-
-aside {
-  textarea {
-    height: 100px;
-    margin-bottom: 5px;
   }
 }
