@@ -30,9 +30,7 @@ class UsersController < ApplicationController
   end
   
   def update
-    
     @user = User.find(params[:id])
-
     if @user.id == current_user.id
       if (!@user.authenticate(params[:user][:cur_password]))
         flash[:danger] = '現在のパスワードに誤りがあります'

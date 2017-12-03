@@ -14,13 +14,13 @@
       <%= f.text_field :email, default: @user.email, class: 'form-control' %>
       
       <%= f.label :locate, "地域" %>
-      <%= f.text_field :locate, :placeholder => '地域を入力してください', class: 'form-control' %>
+      <%= f.text_field :locate, placeholder: '地域を入力してください', class: 'form-control' %>
 
       <%= f.label :profile, "自己紹介" %>
-      <%= f.text_area :profile, :placeholder => '自己紹介を入力してください', size:"20x10", class: 'form-control' %>
+      <%= f.text_area :profile, placeholder: '自己紹介を入力してください', rows: '5', class: 'form-control' %>
       
-      <%= label_tag :user, "現在のパスワード" %>
-      <%= text_field_tag 'user[cur_password]' %>
+      <%= label_tag 'user[cur_password]', "現在のパスワード" %>
+      <%= password_field_tag 'user[cur_password]', '', class: 'form-control' %>
 
       <%= f.label :password, "パスワード" %>
       <%= f.password_field :password, class: 'form-control' %>
