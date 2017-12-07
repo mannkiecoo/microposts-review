@@ -1,5 +1,7 @@
 class UsersController < ApplicationController
 # before_action :correct_user only:[:edit, :update, :delete]
+  before_action :logged_in_user, only: [:edit, :update, :delete]
+  before_action :correct_user, only: [:edit, :update, :delete]
 
 
   def show
@@ -22,30 +24,22 @@ class UsersController < ApplicationController
   end
 
   def edit
-    @user = User.find(params[:id])
-    unless @user.id == session[:user_id] then
-      flash[:danger] = "不正な入力です"
-      redirect_to current_user
-    end
+
   end
   
   def update
-    @user = User.find(params[:id])
-    if @user.id == current_user.id
-      if (!@user.authenticate(params[:user][:cur_password]))
-        flash[:danger] = '現在のパスワードに誤りがあります'
-        render 'edit'
-      elsif @user.update_attributes(user_params)
-        flash[:success] = "情報を更新しました"
-        redirect_to current_user
-      else
-        # フォームのエラーメッセージと重複するので、メッセージは割愛
-        render 'edit'
-      end
+ 
+    if (!@user.authenticate(params[:user][:cur_password]))
+      flash[:danger] = '現在のパスワードに誤りがあります'
+      render 'edit'
+    elsif @user.update_attributes(user_params)
+      flash[:success] = "情報を更新しました"
+      redirect_to current_user
     else
-      flash[:danger] = "不正な入力です"
-      redirect_to @user
+      # フォームのエラーメッセージと重複するので、メッセージは割愛
+      render 'edit'
     end
+
   end
 
   private
@@ -56,8 +50,9 @@ class UsersController < ApplicationController
   end
   
   def correct_user
-    @user = User.find(params[:id])
+    @user = User.find_by(id: params[:id])
     if (current_user != @user)
+      flash[:danger] = "不正な入力です"
       redirect_to root_url
     end
   end

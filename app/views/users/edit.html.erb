@@ -8,19 +8,19 @@
       <%= render 'shared/error_messages', object: f.object %>
 
       <%= f.label :name, "名前" %>
-      <%= f.text_field :name, default: @user.name, class: 'form-control' %>
+      <%= f.text_field :name, placeholder: '名前は入力必須です', default: @user.name, class: 'form-control' %>
       
       <%= f.label :email, "メールアドレス" %>
-      <%= f.text_field :email, default: @user.email, class: 'form-control' %>
+      <%= f.text_field :email, placeholder: 'メールアドレスは入力必須です', default: @user.email, class: 'form-control' %>
       
       <%= f.label :locate, "地域" %>
-      <%= f.text_field :locate, placeholder: '地域を入力してください', class: 'form-control' %>
+      <%= f.text_field :locate, placeholder: '地域を入力してください（オプション）', class: 'form-control' %>
 
       <%= f.label :profile, "自己紹介" %>
-      <%= f.text_area :profile, placeholder: '自己紹介を入力してください', rows: '5', class: 'form-control' %>
+      <%= f.text_area :profile, placeholder: '自己紹介を入力してください（オプション）', rows: '5', class: 'form-control' %>
       
       <%= label_tag 'user[cur_password]', "現在のパスワード" %>
-      <%= password_field_tag 'user[cur_password]', '', class: 'form-control' %>
+      <%= password_field_tag 'user[cur_password]', '', placeholder: '現在のパスワードを入力してください', class: 'form-control' %>
 
       <%= f.submit "変更を保存", class: "btn btn-primary" %>
     <% end %>
