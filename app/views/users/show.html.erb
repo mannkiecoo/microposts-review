@@ -9,11 +9,16 @@
         <li><% if @user.locate %><%= @user.locate %><% else %>地域未入力<% end %></li>
         <li><% if @user.profile %><%= @user.profile %><% else %>プロフィール未入力<% end %></li>
       </ul>
-      <div><%= link_to "編集", edit_user_path(current_user), class:"btn btn-primary profile-edit" if current_user %></div>
+      <% if current_user == @user %>
+        <div><%= link_to "編集", edit_user_path(current_user), class:"btn btn-primary profile-edit" if current_user %></div>
+      <% else %>
+        <%# ここにフォローボタン %>
+        <%= render 'follow_form' %>
+      <% end %>
     </section>
   </aside>
   <div class="col-md-8">
-    <%= render 'follow_form' if logged_in? %>
+    <%#= render 'follow_form' if logged_in? %>
     <% if @user.microposts.any? %>
       <h3>Microposts (<%= @user.microposts.count %>)</h3>
       <ol class="microposts">
