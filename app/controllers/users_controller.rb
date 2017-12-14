@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
 # before_action :correct_user only:[:edit, :update, :delete]
+before_action :logged_in_user, only: [:edit, :update, :destroy, :following, :followers]
 
 
   def show
@@ -48,9 +49,36 @@ class UsersController < ApplicationController
     end
   end
   
-  def followings
-    @user = User.find(params[:id])
-    @follows = @user.following_users
+  def destroy
+    #ここをfollowingとfollowers用に書き換える
+    
+    # @micropost = current_user.microposts.find_by(id: params[:id])
+    # return redirect_to root_url if @micropost.nil?
+    # @micropost.destroy
+    # flash[:success] = "ツイートを削除しました"
+    # redirect_to request.referrer || root_url
+    
+    @user = current_user.following_users.find_by(id: params[:id])
+    return redirect_to root_url if @user.nil?
+    @user.destroy
+    flash[:success] = "対象の#{@title}を削除しました"
+    
+  end
+  
+  def following
+    @title = "Following"
+    @user  = User.find(params[:id])
+    #@users = @user.following_users.paginate(page: params[:page])
+    @users = @user.following_users
+    render 'show_follow'
+  end
+  
+  def followers
+    @title = "Followers"
+    @user  = User.find(params[:id])
+    #@users = @user.followers_users.paginate(page: params[:page])
+    @users = @user.follower_users
+    render 'show_follow'
   end
 
   private
