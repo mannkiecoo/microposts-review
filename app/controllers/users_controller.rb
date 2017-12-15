@@ -49,22 +49,6 @@ before_action :logged_in_user, only: [:edit, :update, :destroy, :following, :fol
     end
   end
   
-  def destroy
-    #ここをfollowingとfollowers用に書き換える
-    
-    # @micropost = current_user.microposts.find_by(id: params[:id])
-    # return redirect_to root_url if @micropost.nil?
-    # @micropost.destroy
-    # flash[:success] = "ツイートを削除しました"
-    # redirect_to request.referrer || root_url
-    
-    @user = current_user.following_users.find_by(id: params[:id])
-    return redirect_to root_url if @user.nil?
-    @user.destroy
-    flash[:success] = "対象の#{@title}を削除しました"
-    
-  end
-  
   def following
     @title = "Following"
     @user  = User.find(params[:id])
