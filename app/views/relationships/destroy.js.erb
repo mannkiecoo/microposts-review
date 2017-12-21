@@ -1,1 +1,7 @@
 $("#follow_form").html("<%= escape_javascript(render('users/follow')) %>");
+
+$("#user-<%= @user.id %>").remove();
+
+$("strong#following").text("<%= current_user.following_users.count %>");
+
+$("h3#user_count").text("Following(<%= current_user.following_users.count %>)");
