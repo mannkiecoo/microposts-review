@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
 # before_action :correct_user only:[:edit, :update, :delete]
-before_action :logged_in_user, only: [:edit, :update, :destroy, :following, :followers]
+before_action :logged_in_user, only: [:edit, :update, :destroy, :following, :followers, :show]
 
 
   def show
@@ -16,7 +16,7 @@ before_action :logged_in_user, only: [:edit, :update, :destroy, :following, :fol
     @user = User.new(user_params)
     if @user.save
       flash[:success] = "ようこそ the Sample App へ！!"
-      redirect_to @user
+      redirect_to login_url
     else
       render 'new'
     end
